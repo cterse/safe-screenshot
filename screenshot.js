@@ -5,13 +5,16 @@ const fs = require('fs');
 const [, , ...args] = process.argv;
 
 (async () => {
+  let page = null;
+  let browser = null;
+
   try {
     const url = args[0];
     const filename = `${args[1]}.png`;
-    const browser = await puppeteer.launch({
+    browser = await puppeteer.launch({
       args: ['--no-sandbox']
     });
-    const page = await browser.newPage();
+    page = await browser.newPage();
     await page.goto(url, {
       waitUntil: 'networkidle0'
     });
