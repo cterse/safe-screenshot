@@ -19,13 +19,17 @@ const [, , ...args] = process.argv;
       path: filename,
       fullPage: true
     });
-    await page.close();
-    await browser.close();
+
+    // await page.close();
+    // await browser.close();
   
   } catch (error) {
    
     console.log(error);
   
+  } finally {
+    await page.close();
+    await browser.close();
   }
   
 })();
